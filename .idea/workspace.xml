@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="23e44e64-3c0e-472c-8460-f628441ba8f0" name="Default Changelist" comment="" />
+    <list default="true" id="23e44e64-3c0e-472c-8460-f628441ba8f0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/test1_not_equal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyfiletree.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/pyfiletree.egg-info/PKG-INFO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyfiletree/ftree.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyfiletree/ftree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_ftree.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +22,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1qCW20LpsvVjU423WAAMUUMUNyb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -83,11 +94,23 @@
       <workItem from="1616927223992" duration="6601000" />
       <workItem from="1617033863835" duration="30809000" />
       <workItem from="1617542567836" duration="9746000" />
+      <workItem from="1617604935070" duration="6873000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/pyfiletree$ftree.coverage" NAME="ftree Coverage Results" MODIFIED="1617035660645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pyfiletree" />

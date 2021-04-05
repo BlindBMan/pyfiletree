@@ -29,6 +29,21 @@ class Node:
             return f'{self.value}'
         return f'{self.level * 4 * " "}{self.value}'
 
+    def __eq__(self, other):
+        if isinstance(other, Node):
+            return Node.are_equal(self, other)
+        return NotImplemented
+
+    @staticmethod
+    def are_equal(node1, node2):
+        if node1.value == node2.value and node1.level == node2.level:
+            if len(node1.children) + len(node2.children) == 0:
+                return True
+            if len(node1.children) == len(node2.children):
+                for child1, child2 in zip(node1.children, node2.children):
+                    return Node.are_equal(child1, child2)
+        return False
+
     def has_value(self, value_to_check):
         return self.value == value_to_check
 
@@ -69,6 +84,11 @@ class FTree:
         if 'r' in mode:
             self._build_reader_tree()
 
+    def __eq__(self, other):
+        if isinstance(other, FTree):
+            return self.root == other.root
+        return NotImplemented
+
     def _build_direct_children(self, father_node, lines):
         if self.curr_line < len(lines):
             curr_node = Node(lines[self.curr_line], debug=self.DEBUG, test=self.TEST)
@@ -102,3 +122,12 @@ class FTree:
 
     def print_tree(self):
         self.root.print_tree()
+
+    def append(self, obj):
+        if isinstance(obj, FTree):
+            # TODO: append logic
+            pass
+        elif isinstance(obj, str):
+            # TODO: read file + append
+            # maybe then we can reverse these ifs
+            pass

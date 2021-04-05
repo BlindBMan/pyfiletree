@@ -5,14 +5,8 @@ Summary: Read/Write python files
 Home-page: UNKNOWN
 Author: Sam
 License: MIT
-Description: # Py File Tree
-        description
-        
-        ## Installation
-        how to install
-        
-        ## Usage
-        use example
+Description: # pyfiletree
+         
         
 Platform: UNKNOWN
 Description-Content-Type: text/markdown
