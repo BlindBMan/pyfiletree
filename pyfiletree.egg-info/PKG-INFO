@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: pyfiletree
+Version: 0.0.1
+Summary: Read/Write python files
+Home-page: UNKNOWN
+Author: Sam
+License: MIT
+Description: # Py File Tree
+        description
+        
+        ## Installation
+        how to install
+        
+        ## Usage
+        use example
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Provides-Extra: dev

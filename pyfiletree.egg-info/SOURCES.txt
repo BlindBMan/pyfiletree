@@ -1,0 +1,9 @@
+README.md
+setup.py
+pyfiletree/__init__.py
+pyfiletree/ftree.py
+pyfiletree.egg-info/PKG-INFO
+pyfiletree.egg-info/SOURCES.txt
+pyfiletree.egg-info/dependency_links.txt
+pyfiletree.egg-info/requires.txt
+pyfiletree.egg-info/top_level.txt
