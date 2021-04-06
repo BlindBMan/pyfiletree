@@ -1,4 +1,5 @@
 from enum import Enum
+import pdb
 
 
 class Level:
@@ -31,7 +32,6 @@ class Node:
 
     def __eq__(self, other):
         if isinstance(other, Node):
-            # TODO: remove root comparison
             return Node.are_equal(self, other)
         return NotImplemented
 
@@ -73,18 +73,23 @@ class Node:
         for child in self.children:
             child.print_tree()
 
+    def get_node_list(self, lst):
+        if self.level != Level.ROOT:
+            lst.append(self)
+        for child in self.children:
+            child.get_node_list(lst)
+
 
 class FTree:
-    def __init__(self, file_path, mode='r', debug=False, test=False):
+    def __init__(self, file_path, debug=False, test=False):
         self.root = Node(file_path, Level.ROOT)
-        self.mode = mode
+        self.list_nodes = []
         self.curr_line = 0
         self._stop_recursion = False
         self.DEBUG = debug
         self.TEST = test
 
-        if 'r' in mode:
-            self._build_reader_tree()
+        self._build_reader_tree()
 
     def __eq__(self, other):
         if isinstance(other, FTree):
@@ -122,6 +127,9 @@ class FTree:
         self._stop_recursion = False
         self.curr_line = 0
 
+    def _get_node_list(self):
+        self.root.get_node_list(self.list_nodes)
+
     def print_tree(self):
         self.root.print_tree()
 
@@ -133,3 +141,11 @@ class FTree:
             # TODO: read file + append
             # maybe then we can reverse these ifs
             pass
+
+    def write_to(self, path, mode='a+'):
+        self._get_node_list()
+        with open(path, mode=mode) as f:
+            for node in self.list_nodes:
+                if node.value == '':
+                    node.value = '\n'
+                f.write(node.__str__())

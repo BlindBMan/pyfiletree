@@ -54,3 +54,15 @@ def test_ftree_eq():
 
     file1.root.add_child(Node("error"))
     assert file1 == file2
+
+
+def test_ftree_write():
+    file1 = FTree('E:\\PycharmProjects\\pyfiletree\\tests\\test.py')
+    file1.root.add_child(Node("error"))
+    file1.write_to('E:\\PycharmProjects\\pyfiletree\\tests\\tests_new.py', mode='w+')
+    file2 = FTree('E:\\PycharmProjects\\pyfiletree\\tests\\tests_new.py')
+    assert file1 == file2
+
+
+def test_ftree_append():
+    pass
