@@ -31,12 +31,14 @@ class Node:
 
     def __eq__(self, other):
         if isinstance(other, Node):
+            # TODO: remove root comparison
             return Node.are_equal(self, other)
         return NotImplemented
 
     @staticmethod
     def are_equal(node1, node2):
-        if node1.value == node2.value and node1.level == node2.level:
+        if (node1.value == node2.value or (node1.level == Level.ROOT and node2.level == Level.ROOT)) and \
+                node1.level == node2.level:
             if len(node1.children) + len(node2.children) == 0:
                 return True
             if len(node1.children) == len(node2.children):

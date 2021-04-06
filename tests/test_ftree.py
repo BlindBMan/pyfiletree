@@ -43,7 +43,7 @@ def test_node_eq():
 
 def test_ftree_eq():
     file1 = FTree('E:\\PycharmProjects\\pyfiletree\\tests\\test.py')
-    file2 = FTree('E:\\PycharmProjects\\pyfiletree\\tests\\test.py')
+    file2 = FTree('E:\\PycharmProjects\\pyfiletree\\tests\\test2.py')
     file3 = FTree('E:\\PycharmProjects\\pyfiletree\\tests\\test1_not_equal.py')
 
     assert file1 == file2
