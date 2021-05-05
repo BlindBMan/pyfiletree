@@ -122,7 +122,9 @@ def test_ftree_append():
     file1.append('tests\\file_to_append.py')
     assert file1.root.children[-1] == file_to_append.root.children[-1]
     
-    file1.append('tests\\file_to_append.py', line=1)
-    file1.write_to('tests\\test3.py')
+    file1.append('tests\\file_to_append.py', line=8)
+    file1.write_to('tests\\test3.py', mode='w')
     assert file1.root.children[2].line == 3
-    assert file1.root.children[5].children[1].children[1].line == 9
+    assert file1.root.children[5].children[1].children[1].line == 10
+
+    # TODO further testing

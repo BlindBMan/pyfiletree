@@ -76,8 +76,17 @@ class Node:
                 child.update_line(line_offset)
             self.children.extend(children)
         else:
-            # TODO
-            pass
+            idx_to_be_replaced = self.children.index(node_to_be_replaced)
+
+            # update lines and lvls in children to be appended
+            for child in children:
+                child.update_line(line + children.index(child), 0)
+                child.update_level(self.level)
+
+            # update lines for children that are offsetted, lvls are unchanged
+            for child in self.children[idx_to_be_replaced:]:
+                child.update_line(len(children))
+            self.children[idx_to_be_replaced:idx_to_be_replaced] = children
 
     def print_tree(self):
         end = '\n' if self.DEBUG or not self.value else ''
@@ -91,10 +100,16 @@ class Node:
         for child in self.children:
             child.get_node_list(lst)
 
-    def update_line(self, offset):
+    def update_line(self, offset, new_line=None):
+        self.line = new_line or self.line
         self.line += offset
         for child in self.children:
             child.update_line(offset)
+
+    def update_level(self, fathers_lvl):
+        self.level = fathers_lvl + 1
+        for child in self.children:
+            child.update_level(self.level)
 
 
 class FTree:
