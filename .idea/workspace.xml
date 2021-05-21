@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23e44e64-3c0e-472c-8460-f628441ba8f0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/post_transform.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/pre_transform.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/gusti.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/gusti.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyfiletree/ftree.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyfiletree/ftree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/file_to_append.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/file_to_append.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test3.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_ftree.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_ftree.py" afterDir="false" />
     </list>
@@ -107,7 +108,9 @@
       <workItem from="1620068904376" duration="3948000" />
       <workItem from="1620138292446" duration="2217000" />
       <workItem from="1620197870387" duration="61000" />
-      <workItem from="1620232883027" duration="3521000" />
+      <workItem from="1620232883027" duration="5254000" />
+      <workItem from="1620552620362" duration="8306000" />
+      <workItem from="1621602266232" duration="4997000" />
     </task>
     <servers />
   </component>

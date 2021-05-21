@@ -122,9 +122,31 @@ def test_ftree_append():
     file1.append('tests\\file_to_append.py')
     assert file1.root.children[-1] == file_to_append.root.children[-1]
     
-    file1.append('tests\\file_to_append.py', line=8)
+    file1.append('tests\\file_to_append.py', line=12)
     file1.write_to('tests\\test3.py', mode='w')
+    # TODO broken append to empty lines
+    # TODO add padding option with empty nodes
     assert file1.root.children[2].line == 3
-    assert file1.root.children[5].children[1].children[1].line == 10
+    assert file1.root.children[3].children[2].children[0].line == 13
 
     # TODO further testing
+
+
+# TODO tests for transform func array (lambdas); method to apply array atm
+# TODO specify node type on which to apply; pass json/dict
+def test_ftree_transformer():
+    def self_to_transformer(string):
+        return string.replace("self.", "Transform.")
+    func_list = [
+        lambda x: x.replace("extract", "transform"),
+        self_to_transformer,
+        lambda x: x.replace("self, ", ""),
+        lambda x: x.replace("bala", "ALA")
+    ]
+    pre_transform = FTree('tests\\pre_transform.py', transformer=func_list)
+    post_transform = FTree('tests\\post_transform.py')
+
+    pre_transform.apply_transformer()
+
+    assert pre_transform == post_transform
+    pre_transform.write_to('tests\\t_pre_post_transform.py', mode="w")
