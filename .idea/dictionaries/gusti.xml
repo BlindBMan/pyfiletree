@@ -2,8 +2,11 @@
   <dictionary name="gusti">
     <words>
       <w>ftree</w>
+      <w>lvls</w>
+      <w>offsetted</w>
       <w>pyfiletree</w>
       <w>traceroute</w>
+      <w>tresh</w>
     </words>
   </dictionary>
 </component>

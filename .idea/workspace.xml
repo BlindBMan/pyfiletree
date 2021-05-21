@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="23e44e64-3c0e-472c-8460-f628441ba8f0" name="Default Changelist" comment="" />
+    <list default="true" id="23e44e64-3c0e-472c-8460-f628441ba8f0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/tests/post_transform.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/pre_transform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/gusti.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/gusti.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyfiletree/ftree.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyfiletree/ftree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test3.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_ftree.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_ftree.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +96,21 @@
       <workItem from="1617033863835" duration="30809000" />
       <workItem from="1617542567836" duration="9746000" />
       <workItem from="1617604935070" duration="12656000" />
+      <workItem from="1617691474929" duration="14873000" />
+      <workItem from="1617866991570" duration="5186000" />
+      <workItem from="1617951670769" duration="5145000" />
+      <workItem from="1618133974058" duration="2351000" />
+      <workItem from="1618238231868" duration="4775000" />
+      <workItem from="1618917641879" duration="4972000" />
+      <workItem from="1619078185416" duration="673000" />
+      <workItem from="1619377736716" duration="8810000" />
+      <workItem from="1619615829139" duration="1370000" />
+      <workItem from="1620068904376" duration="3948000" />
+      <workItem from="1620138292446" duration="2217000" />
+      <workItem from="1620197870387" duration="61000" />
+      <workItem from="1620232883027" duration="5254000" />
+      <workItem from="1620552620362" duration="8306000" />
+      <workItem from="1621602266232" duration="4997000" />
     </task>
     <servers />
   </component>
@@ -99,7 +122,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
