@@ -6,7 +6,9 @@
       <change afterPath="$PROJECT_DIR$/tests/pre_transform.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/gusti.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/gusti.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyfiletree/ftree.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyfiletree/ftree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test3.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_ftree.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_ftree.py" afterDir="false" />
     </list>
@@ -110,7 +112,7 @@
       <workItem from="1620197870387" duration="61000" />
       <workItem from="1620232883027" duration="5254000" />
       <workItem from="1620552620362" duration="8306000" />
-      <workItem from="1621602266232" duration="4997000" />
+      <workItem from="1621602266232" duration="6154000" />
     </task>
     <servers />
   </component>

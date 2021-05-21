@@ -6,7 +6,7 @@ with open('README.md', 'r') as fh:
 setup(
     name='pyfiletree',
     packages=find_packages(include=['pyfiletree']),
-    version='0.0.1',
+    version='0.0.2',
     description='Read/Write python files',
     author='Sam',
     license='MIT',
