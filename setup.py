@@ -6,7 +6,7 @@ with open('README.md', 'r') as fh:
 setup(
     name='pyfiletree',
     packages=find_packages(include=['pyfiletree']),
-    version='0.1.2',
+    version='0.1.3',
     description='Read/Write python files',
     author='Sam',
     license='MIT',
@@ -23,7 +23,7 @@ setup(
     long_description_content_type='text/markdown'
 )
 
-# python3 setup.py bdist_wheel
+# py setup.py bdist_wheel
 # twine upload --repository testpypi dist/*
 # twine upload dist/*
 # pip install -e .

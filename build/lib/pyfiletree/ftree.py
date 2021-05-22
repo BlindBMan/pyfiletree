@@ -128,12 +128,11 @@ class Node:
 
 class FTree:
     def __init__(self, file_path, transformer=None, debug=False, test=False):
-        # TODO: pass a function/array of functions to apply on each node
         self.root = Node(file_path, father_node=None, level=Level.ROOT)
         self.list_nodes = []
         self.curr_line = 0
         self._stop_recursion = False
-        self.transformer = transformer
+        self.transformer = transformer  # TODO: define a setter for this; make it protected
         self.DEBUG = debug
         self.TEST = test
 
@@ -193,8 +192,8 @@ class FTree:
         self.list_nodes = []
         self.root.get_node_list(self.list_nodes)
 
-    def print_tree(self):
-        self.root.print_tree()
+    def _update_lines_globally(self, line_tresh, offset):
+        self.root.update_lines_globally(line_tresh, offset)
 
     def _get_node_by_line(self, node, line):
         if not self._stop_recursion:
@@ -214,6 +213,7 @@ class FTree:
         return node
 
     def append(self, obj, line=-1):
+        # TODO append node
         if isinstance(obj, FTree):
             children_to_append = obj.root.children
             if line == -1:  # append to the end of tree: move children from root to root and update lines
@@ -221,7 +221,7 @@ class FTree:
             else:
                 curr_node = self.get_node_by_line(line)
                 offset = Node.get_real_length(children_to_append)
-                self.update_lines_globally(line, offset)
+                self._update_lines_globally(line, offset)
                 curr_node.father.add_children(children_to_append, curr_node, line, debug=self.DEBUG)
         elif isinstance(obj, str):
             ftree = FTree(obj)
@@ -235,10 +235,11 @@ class FTree:
                     node.value = '\n'
                 f.write(node.__str__())
 
-    def update_lines_globally(self, line_tresh, offset):
-        self.root.update_lines_globally(line_tresh, offset)
+    def print_tree(self):
+        self.root.print_tree()
 
     def apply_transformer(self):
+        # TODO: specify lines/threshold line for which to apply this list of funcs
         self._get_node_list()
         if self.transformer:
             for node in self.list_nodes:

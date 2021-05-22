@@ -1,7 +1,7 @@
 ![PyPI - License](https://img.shields.io/pypi/l/pyfiletree?style=plastic)
 ![PyPI](https://img.shields.io/pypi/v/pyfiletree)
 
-# What it does
+# What and why
 This library's creation was motivated by my deep thirst to automate everything.
 
 It enables you to programmatically read, change and write python files.
@@ -32,7 +32,7 @@ pip install pyfiletree
 #### Example 1
 Simple, but useless use of this library
 ```python
-from pyfiletree.ftree import Ftree
+from pyfiletree.ftree import FTree
 
 file = FTree(read_file_path)
 file.write_to(write_file_path)
@@ -41,7 +41,7 @@ file.write_to(write_file_path)
 #### Example 2
 Using the transformer parameter to change every line of the input file
 ```python
-from pyfiletree.ftree import Ftree
+from pyfiletree.ftree import FTree
 
 transformer = [
     lambda x: x.replace(" ", "_"),
@@ -62,7 +62,7 @@ using the `line` parameter of the `append` method.
 This way of appending keeps the existing level of indentation intact.
 
 ```python
-from pyfiletree.ftree import Ftree
+from pyfiletree.ftree import FTree
 
 file = FTree(read_file_path)
 file_to_append = FTree(append_file_path)
