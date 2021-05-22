@@ -1,2 +1,238 @@
-# pyfiletree
-does this work? 
+![PyPI - License](https://img.shields.io/pypi/l/pyfiletree?style=plastic)
+![PyPI](https://img.shields.io/pypi/v/pyfiletree)
+
+# What it does
+This library's creation was motivated by my deep thirst to automate everything.
+
+It enables you to programmatically read, change and write python files.
+## Short explanation
+In simple words, an `FTree` object stores the .py file in a tree-like format
+for simpler use with Python's indentation levels.
+
+You can append different other .py files to your main one and
+keep/adapt the levels of indentation.
+
+This allows you to automatically change/create new python files and
+transform them to your needs.
+
+The root of this tree is the file name, with an indentation level of `-1`
+and is ignored in most of the transform/write/equality operations.
+
+Children of root and other nodes are determined based of their level of indentation,
+taken as a multiple of 4. (even blank line are treated as children)
+
+# Installation
+Install using pip package manager
+
+```bash
+pip install pyfiletree
+```
+
+# Usage
+#### Example 1
+Simple, but useless use of this library
+```python
+from pyfiletree.ftree import Ftree
+
+file = FTree(read_file_path)
+file.write_to(write_file_path)
+```
+
+#### Example 2
+Using the transformer parameter to change every line of the input file
+```python
+from pyfiletree.ftree import Ftree
+
+transformer = [
+    lambda x: x.replace(" ", "_"),
+    lambda x: x.replace("self.", "MyClass."),
+    lambda x: x.lower(),
+]
+file = FTree(read_file_path, transformer)
+file.apply_transformer()
+file.write_to(write_file_path)
+```
+
+#### Example 3
+Concatenating two python files.
+
+Here you have the option to append the second file at a certain line
+using the `line` parameter of the `append` method.
+
+This way of appending keeps the existing level of indentation intact.
+
+```python
+from pyfiletree.ftree import Ftree
+
+file = FTree(read_file_path)
+file_to_append = FTree(append_file_path)
+file.append(file_to_append, line=3)
+file.write_to(write_file_path)
+```
+
+# How it works
+## FTree parameters
+#### `file_path`
+File from which to read and create the code tree. 
+You have to ensure this is a `.py` file. For now, no restrictions are applied
+to the file type.
+
+#### `transformer`
+This is the end goal I had in mind when developing this library.
+Based on this parameter, your file will change.
+
+The `transformer` parameter takes a list of functions, i.e.:
+
+```python
+transformer = [
+    lambda x: x.replace("3", "4"),
+    before_declared_func,
+    lambda y: y.lower()
+]
+
+f = FTree(file_path, transformer=transformer)
+```
+
+Both named functions and lambda functions are allowed.
+
+In order for these changes to take place, the `apply_transformer` method
+needs to be called.
+
+```f.apply_transformer()```
+
+***Restriction***: The functions provided apply to each **line** in the file, hence the functions need to expect only
+one parameter(the line).
+
+*Observations*: 
+- Functions are applied in their list order.
+- Once declared, `transformer` cannot be changed(*incoming feature*), 
+unless you override it, i.e. 
+
+     ```f.transformer = new_transformer```
+
+#####Incoming features
+
+- Change transformer post-object creation
+- Specify list of lines/ threshold line for where to apply the transformer
+
+
+#### `debug`
+
+This boolean value influences what is printed by the `print_tree` method.
+
+When `True`, the logs will show:
+
+- level of indentation
+- father node
+
+
+#### `test`
+
+The same as `debug`, but it only shows the value of each node, without indent.
+
+
+## FTree methods
+
+#### `print_tree()`
+Prints tree to console, formatting is dependent on `debug` and `test` values.
+
+#### `get_node_by_line(line)`
+
+Returns the node at the line provided.
+
+If no such node/line exists, an exception will be raised.
+
+
+#### `write_to(path, mode='a+')`
+Method to write the current tree to a said file path.
+
+- `path` is not restricted to only .py files **yet**, you have to handle this
+- `mode` mode in which the file is opened, default is to append
+
+#### `append(obj, line=-1)`
+
+Using this method you can append another file to a certain line.
+
+- Line is by default `-1` which appends at the end of file, under the root parent
+- When `line` is specified, `obj` will be appended at said line,
+but under the parent of the current node that is found at that line
+- `obj` can be either an FTree instance or a file path to a .py(in which case
+an FTree object will automatically be created)
+
+##### Example
+
+File to append to -> path: `"usr/file1"`
+```python
+import os  # line 1
+# line 2
+def func():  # line 3
+    x = 1  # line 4
+    y = 0  # line 5
+    if x == 1:  # line 6
+        y = x + 2  # line 7
+    return x + y  # line 8
+```
+
+File to be appended -> path: `"usr/file2"`
+```python
+y = 1
+```
+
+FTree code:
+```python
+from pyfiletree import FTree
+
+main_file = FTree("usr/file1")
+main_file.append("usr/file2", line=6)
+main_file.write_to("usr/file3")
+```
+
+This example attempts to append `file2` at line 6, 
+this leads to `y = 1` getting assigned as the children
+of the father node of `if x == 1:`, which currently is at line 6.
+Father node being `def func():`
+
+File after append -> path: `"usr/file3"`
+```python
+import os  # line 1
+# line 2
+def func():  # line 3
+    x = 1  # line 4
+    y = 0  # line 5
+    y = 1  # <- new line appended
+    if x == 1:  # line 7
+        y = x + 2  # line 8
+    return x + y  # line 9
+```
+
+##### Incoming features:
+
+- Append just a node
+- `apply_transformer=False` boolean to apply the current transformer to
+just the appended tree
+
+
+#### `apply_transformer()`
+Applies the functions in the `transformer` parameter to each line
+in the tree.
+
+
+## Node class
+You wouldn't want to use this class, since FTree does all the heavy
+lifting for you. 
+But I will add documentation for this as well later.
+
+
+# Contributing
+Contributions are most welcome!!
+
+If you want to change/implement something new, please 
+create an issue first so we can talk about it!
+
+## Testing
+You need to have `pytest==4.4.1` to run the tests in `tests/test_ftree.py`
+
+Navigate to root directory of the project and run with `pytest -vv` 
+to get detailed result of each test.
+
+If you implement a new feature, please write comprehensive tests for it.

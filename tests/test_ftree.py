@@ -132,7 +132,6 @@ def test_ftree_append():
     # TODO further testing
 
 
-# TODO tests for transform func array (lambdas); method to apply array atm
 # TODO specify node type on which to apply; pass json/dict
 def test_ftree_transformer():
     def self_to_transformer(string):
