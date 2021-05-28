@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="23e44e64-3c0e-472c-8460-f628441ba8f0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/append_with_transformer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/post_append_with_transform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/gusti.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/gusti.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/pyfiletree-0.0.1-py3-none-any.whl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/pyfiletree-0.0.1.tar.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/pyfiletree-0.1.0-py3-none-any.whl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyfiletree.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/pyfiletree.egg-info/PKG-INFO" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyfiletree/ftree.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyfiletree/ftree.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/post_transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/post_transform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/t_pre_post_transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/t_pre_post_transform.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_ftree.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_ftree.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -113,7 +115,11 @@
       <workItem from="1620232883027" duration="5254000" />
       <workItem from="1620552620362" duration="8306000" />
       <workItem from="1621602266232" duration="12047000" />
-      <workItem from="1621675198225" duration="6134000" />
+      <workItem from="1621675198225" duration="21205000" />
+      <workItem from="1621925456847" duration="3095000" />
+      <workItem from="1622153823760" duration="774000" />
+      <workItem from="1622185557816" duration="1075000" />
+      <workItem from="1622208203501" duration="7894000" />
     </task>
     <servers />
   </component>

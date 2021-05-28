@@ -1,12 +1,14 @@
 import library
 
 
-def transform_from_a():
+def extract_from_a():
     x = 0
     if x == 0:
         print("hehe")
-        if transform_x == 3:
-            return y
+        if extract_x == 3:
+            y = 2023
+            if y == 2023:
+                return y
     return x
 
 
@@ -19,8 +21,13 @@ if (
     x = 1
 
 
-class HI(ALA):
+class HI(self, bala):
     extract_Available = 0
-    Transformer.orbit()
+    self.orbit()
+    def __str__(self):
+        return 'de ce nu?'
+class HI(self, bala):
+    transform_Available = 0
+    self.orbit()
     def __str__(self):
         return 'de ce nu?'

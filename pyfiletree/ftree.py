@@ -27,7 +27,8 @@ class Node:
 
     def __str__(self):
         if self.DEBUG:
-            return f'{self.level * 4 * " "}{self.value[:-1]} --> {self.level} : {self.father.value}'
+            return f'{self.level * 4 * " "}{self.value[:-1]} ' \
+                   f'--> lvl:{self.level} : line{self.line} : father:{self.father.value}'
         if self.TEST:
             return f'{self.value}'
         return f'{self.level * 4 * " "}{self.value}'
@@ -36,6 +37,16 @@ class Node:
         if isinstance(other, Node):
             return Node.are_equal(self, other)
         return NotImplemented
+
+    def delete(self, keep_children=True):
+        index = self.father.children.index(self)
+        if keep_children:
+            self.father.children[index:index+1] = self.children
+            for child in self.children:
+                child.father = self.father
+                child.update_level(self.father.level)
+        else:
+            self.father.children.pop(index)
 
     @staticmethod
     def are_equal(node1, node2):
@@ -71,7 +82,7 @@ class Node:
 
     def add_children(self, children, node_to_be_replaced=None, line=-1, debug=False):
         if line == -1:
-            line_offset = self.children[-1].line + 1
+            line_offset = Node.get_real_length(self.children)
             for child in children:
                 child.update_line(line_offset)
                 child.father = self
@@ -130,9 +141,10 @@ class FTree:
     def __init__(self, file_path, transformer=None, debug=False, test=False):
         self.root = Node(file_path, father_node=None, level=Level.ROOT)
         self.list_nodes = []
+        self._get_node_list()
         self.curr_line = 0
         self._stop_recursion = False
-        self.transformer = transformer  # TODO: define a setter for this; make it protected
+        self.transformer = transformer
         self.DEBUG = debug
         self.TEST = test
 
@@ -205,6 +217,13 @@ class FTree:
                 if self._stop_recursion:
                     return found_node
 
+    def set_transformer(self, new_transformer):
+        if self.transformer:
+            self.transformer.extend(new_transformer)
+        else:
+            self.transformer = new_transformer
+
+    # TODO: add get_node_by_value(self, value)
     def get_node_by_line(self, line):
         self._stop_recursion = False
         node = self._get_node_by_line(self.root, line)
@@ -212,9 +231,12 @@ class FTree:
             raise Exception(f'No node at line {line}')
         return node
 
-    def append(self, obj, line=-1):
-        # TODO append node
+    def append(self, obj, line=-1, transformer=None):
+        # TODO: append node
         if isinstance(obj, FTree):
+            if transformer:
+                obj.set_transformer(transformer)
+                obj.apply_transformer()
             children_to_append = obj.root.children
             if line == -1:  # append to the end of tree: move children from root to root and update lines
                 self.root.add_children(children_to_append, debug=self.DEBUG)
@@ -225,9 +247,11 @@ class FTree:
                 curr_node.father.add_children(children_to_append, curr_node, line, debug=self.DEBUG)
         elif isinstance(obj, str):
             ftree = FTree(obj)
-            self.append(ftree, line=line)
+            self.append(ftree, line=line, transformer=transformer)
 
-    def write_to(self, path, mode='a+'):
+    def write_to(self, path, mode='a+', apply_transformer=False):
+        if apply_transformer:
+            self.apply_transformer()
         self._get_node_list()
         with open(path, mode=mode) as f:
             for node in self.list_nodes:
@@ -240,10 +264,22 @@ class FTree:
 
     def apply_transformer(self):
         # TODO: specify lines/threshold line for which to apply this list of funcs
+        # TODO: allow multiple parameters for functions:
+        #  use syntax -> transformer = [(func1, *args), (lambda x, *args: ..., (arg1, arg2))
         self._get_node_list()
         if self.transformer:
             for node in self.list_nodes:
                 for func in self.transformer:
-                    node.value = func(node.value)
+                    val = func(node.value)
+                    if isinstance(val, tuple) or val is None:
+                        val = tuple([val]) if not isinstance(val, tuple) else val
+                        if val[0] is None:
+                            keep = val[1] if len(val) == 2 else True
+                            node.delete(keep)
+                            offset = -1 if keep else (-1) * Node.get_real_length(node.children)
+                            self._update_lines_globally(node.line, offset)
+                            break
+                    else:
+                        node.value = val
         else:
             raise Exception("Transformer empty")

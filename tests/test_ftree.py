@@ -118,10 +118,10 @@ def test_ftree_append():
     file_to_append = FTree('tests\\file_to_append.py')
     
     assert file1.root.children[0].line == 1
-    
+
     file1.append('tests\\file_to_append.py')
     assert file1.root.children[-1] == file_to_append.root.children[-1]
-    
+
     file1.append('tests\\file_to_append.py', line=12)
     file1.write_to('tests\\test3.py', mode='w')
     # TODO broken append to empty lines
@@ -132,7 +132,6 @@ def test_ftree_append():
     # TODO further testing
 
 
-# TODO specify node type on which to apply; pass json/dict
 def test_ftree_transformer():
     def self_to_transformer(string):
         return string.replace("self.", "Transform.")
@@ -140,7 +139,8 @@ def test_ftree_transformer():
         lambda x: x.replace("extract", "transform"),
         self_to_transformer,
         lambda x: x.replace("self, ", ""),
-        lambda x: x.replace("bala", "ALA")
+        lambda x: x.replace("bala", "ALA"),
+        lambda x: None if "2023" in x else x
     ]
     pre_transform = FTree('tests\\pre_transform.py', transformer=func_list)
     post_transform = FTree('tests\\post_transform.py')
@@ -149,3 +149,25 @@ def test_ftree_transformer():
 
     assert pre_transform == post_transform
     pre_transform.write_to('tests\\t_pre_post_transform.py', mode="w")
+
+
+def test_append_with_transformer():
+    func_list = [
+        lambda x: x.replace("extract", "transform")
+    ]
+    pre_transform = FTree('tests\\pre_transform.py')
+    pre_transform.append('tests\\append_with_transformer.py', transformer=func_list)
+    pre_transform.write_to('tests\\real_post_append_with_transform.py')
+    post_append = FTree('tests\\post_append_with_transform.py')
+    assert post_append == pre_transform
+    assert pre_transform.get_node_by_line(25).value.strip() == "extract_Available = 0"
+    assert pre_transform.get_node_by_line(30).value.strip() == "transform_Available = 0"
+
+
+def test_append_node():
+    pass
+
+
+# TODO specify node type on which to apply; pass json/dict
+def test_ftree_transf_node_type():
+    pass

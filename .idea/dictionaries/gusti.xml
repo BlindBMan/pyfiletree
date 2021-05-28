@@ -2,10 +2,12 @@
   <dictionary name="gusti">
     <words>
       <w>ftree</w>
+      <w>gitignore</w>
       <w>lvls</w>
       <w>offsetted</w>
       <w>pyfiletree</w>
       <w>traceroute</w>
+      <w>transf</w>
       <w>tresh</w>
     </words>
   </dictionary>

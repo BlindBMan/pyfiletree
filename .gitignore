@@ -1,0 +1,7 @@
+/.eggs/
+/dist/
+.idea/dictionaries/gusti.xml
+.idea/dictionaries/gusti.xml
+.idea/workspace.xml
+pyfiletree/__pycache__/ftree.cpython-37.pyc
+tests/__pycache__/test_ftree.cpython-37-PYTEST.pyc

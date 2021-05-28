@@ -6,9 +6,7 @@ def transform_from_a():
     if x == 0:
         print("hehe")
         if transform_x == 3:
-            y = 2023
-            if y == 2023:
-                return y
+            return y
     return x
     
     
