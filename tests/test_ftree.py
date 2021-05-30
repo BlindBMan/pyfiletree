@@ -130,6 +130,7 @@ def test_ftree_append():
     assert file1.root.children[3].children[2].children[0].line == 13
 
     # TODO further testing
+    # TODO: fix children line not updating properly
 
 
 def test_ftree_transformer():

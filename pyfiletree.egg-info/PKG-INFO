@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pyfiletree
-Version: 0.1.3
+Version: 0.1.5
 Summary: Read/Write python files
 Home-page: UNKNOWN
 Author: Sam
@@ -107,21 +107,31 @@ Description: ![PyPI - License](https://img.shields.io/pypi/l/pyfiletree?style=pl
         
         ```f.apply_transformer()```
         
+        *New Feature*
+        
+        If your function returns a tuple as `(None, Boolean)`, that node
+         will be deleted from the file tree, i.e.
+        
+        ```python
+        transformer = [
+            lambda x: (None, True) if "def" in x else x,
+            lambda x: None if "return" in x else x
+        ]
+        ```
+        The boolean value is optional(defaults to `True`) and signals
+        if the node's children should be deleted too or not.
+        If `True` then the children are appended to node's father.
+        
+        
         ***Restriction***: The functions provided apply to each **line** in the file, hence the functions need to expect only
         one parameter(the line).
         
         *Observations*: 
-        - Functions are applied in their list order.
-        - Once declared, `transformer` cannot be changed(*incoming feature*), 
-        unless you override it, i.e. 
+        - Functions are applied in their appearance order.
         
-             ```f.transformer = new_transformer```
+        ##### Incoming features
         
-        #####Incoming features
-        
-        - Change transformer post-object creation
         - Specify list of lines/ threshold line for where to apply the transformer
-        
         
         #### `debug`
         
@@ -150,21 +160,25 @@ Description: ![PyPI - License](https://img.shields.io/pypi/l/pyfiletree?style=pl
         If no such node/line exists, an exception will be raised.
         
         
-        #### `write_to(path, mode='a+')`
+        #### `write_to(path, mode='a+', apply_transformer=False)`
         Method to write the current tree to a said file path.
         
         - `path` is not restricted to only .py files **yet**, you have to handle this
-        - `mode` mode in which the file is opened, default is to append
+        - `mode` -> mode in which the file is opened, default is to append
+        - `apply_transformer` -> Boolean to apply the transformer before writing.
+        Convenient to skip additional call to `apply_transformer()`
         
-        #### `append(obj, line=-1)`
+        #### `append(obj, line=-1, transformer=None)`
         
         Using this method you can append another file to a certain line.
         
-        - Line is by default `-1` which appends at the end of file, under the root parent
+        - `line` is by default `-1` which appends at the end of file, under the root parent
         - When `line` is specified, `obj` will be appended at said line,
         but under the parent of the current node that is found at that line
         - `obj` can be either an FTree instance or a file path to a .py(in which case
         an FTree object will automatically be created)
+        - `transformer` -> transformer to be applied only to the appended file.
+        This function list is not appended to the existing `transformer`
         
         ##### Example
         
@@ -222,6 +236,11 @@ Description: ![PyPI - License](https://img.shields.io/pypi/l/pyfiletree?style=pl
         #### `apply_transformer()`
         Applies the functions in the `transformer` parameter to each line
         in the tree.
+        
+        
+        #### `set_transformer(new_transformer)`
+        `new_transformer` is **appended** to the existing `transformer`, if it
+        exists, else acts like a basic setter.
         
         
         ## Node class

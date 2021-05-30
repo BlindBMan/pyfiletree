@@ -28,7 +28,7 @@ class Node:
     def __str__(self):
         if self.DEBUG:
             return f'{self.level * 4 * " "}{self.value[:-1]} ' \
-                   f'--> lvl:{self.level} : line{self.line} : father:{self.father.value}'
+                   f'--> lvl:{self.level} : line{self.line} : father:{self.father.value.strip()}\n'
         if self.TEST:
             return f'{self.value}'
         return f'{self.level * 4 * " "}{self.value}'
@@ -84,19 +84,17 @@ class Node:
         if line == -1:
             line_offset = Node.get_real_length(self.children)
             for child in children:
-                child.update_line(line_offset)
+                child.update_line(line_offset, debug=debug)
                 child.father = self
-                child.DEBUG = debug
             self.children.extend(children)
         else:
             idx_to_be_replaced = self.children.index(node_to_be_replaced)
 
             # update lines and lvls in children to be appended
             for child in children:
-                child.update_line(line + children.index(child) - 1, 0)
+                child.update_line(line + children.index(child), new_line=0, debug=debug)
                 child.update_level(self.level)
                 child.father = self
-                child.DEBUG = debug
 
             self.children[idx_to_be_replaced:idx_to_be_replaced] = children
 
@@ -112,11 +110,13 @@ class Node:
         for child in self.children:
             child.get_node_list(lst)
 
-    def update_line(self, offset, new_line=None):
-        self.line = new_line or self.line
+    def update_line(self, offset, new_line=None, debug=False):
+        self.line = self.line if new_line is None else new_line
         self.line += offset
+        self.DEBUG = debug
         for child in self.children:
-            child.update_line(offset)
+            offset = offset if new_line is None else offset + 1
+            child.update_line(offset, new_line, debug)
 
     def update_level(self, fathers_lvl):
         self.level = fathers_lvl + 1
@@ -223,7 +223,7 @@ class FTree:
         else:
             self.transformer = new_transformer
 
-    # TODO: add get_node_by_value(self, value)
+    # TODO: add get_nodes_by_value(self, value)
     def get_node_by_line(self, line):
         self._stop_recursion = False
         node = self._get_node_by_line(self.root, line)
@@ -232,7 +232,7 @@ class FTree:
         return node
 
     def append(self, obj, line=-1, transformer=None):
-        # TODO: append node
+        # TODO: append node as a copy of parameter node: useful for repetitive appends with the same node
         if isinstance(obj, FTree):
             if transformer:
                 obj.set_transformer(transformer)
@@ -263,8 +263,8 @@ class FTree:
         self.root.print_tree()
 
     def apply_transformer(self):
-        # TODO: specify lines/threshold line for which to apply this list of funcs
-        # TODO: allow multiple parameters for functions:
+        # TODO: specify lines/threshold line for which to apply this list of funcs: is this really useful?
+        # TODO: allow multiple parameters for functions:  try this in another function
         #  use syntax -> transformer = [(func1, *args), (lambda x, *args: ..., (arg1, arg2))
         self._get_node_list()
         if self.transformer:
