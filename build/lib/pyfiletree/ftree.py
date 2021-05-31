@@ -91,8 +91,9 @@ class Node:
             idx_to_be_replaced = self.children.index(node_to_be_replaced)
 
             # update lines and lvls in children to be appended
-            for child in children:
-                child.update_line(line + children.index(child), new_line=0, debug=debug)
+            real_lengths = [1 + Node.get_real_length(child.children) for child in children]
+            for idx, child in enumerate(children):
+                child.update_line(line + sum(real_lengths[:idx]), new_line=0, debug=debug)
                 child.update_level(self.level)
                 child.father = self
 
@@ -114,9 +115,11 @@ class Node:
         self.line = self.line if new_line is None else new_line
         self.line += offset
         self.DEBUG = debug
-        for child in self.children:
+
+        real_lengths = [Node.get_real_length(child.children) if new_line is not None else 0 for child in self.children]
+        for idx, child in enumerate(self.children):
             offset = offset if new_line is None else offset + 1
-            child.update_line(offset, new_line, debug)
+            child.update_line(offset + sum(real_lengths[:idx]), new_line, debug)
 
     def update_level(self, fathers_lvl):
         self.level = fathers_lvl + 1

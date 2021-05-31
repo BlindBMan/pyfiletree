@@ -4,12 +4,12 @@
     <list default="true" id="23e44e64-3c0e-472c-8460-f628441ba8f0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/lib/pyfiletree/ftree.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/lib/pyfiletree/ftree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/pyfiletree-0.1.2-py3-none-any.whl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/pyfiletree-0.1.3-py3-none-any.whl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pyfiletree.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/pyfiletree.egg-info/PKG-INFO" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyfiletree/ftree.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyfiletree/ftree.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/file_to_append.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/file_to_append.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/real_post_append_with_transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/real_post_append_with_transform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test3.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_ftree.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_ftree.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,7 +32,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../RoomvoScraping" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
@@ -117,7 +117,8 @@
       <workItem from="1621925456847" duration="3095000" />
       <workItem from="1622153823760" duration="774000" />
       <workItem from="1622185557816" duration="1075000" />
-      <workItem from="1622208203501" duration="15140000" />
+      <workItem from="1622208203501" duration="21144000" />
+      <workItem from="1622404911582" duration="1247000" />
     </task>
     <servers />
   </component>

@@ -114,23 +114,24 @@ def test_get_node_by_line():
 
 
 def test_ftree_append():
-    file1 = FTree('tests\\test.py')
+    file1 = FTree('tests\\test.py', debug=True)
     file_to_append = FTree('tests\\file_to_append.py')
     
     assert file1.root.children[0].line == 1
 
+    # TODO: rewrite tests
     file1.append('tests\\file_to_append.py')
     assert file1.root.children[-1] == file_to_append.root.children[-1]
 
-    file1.append('tests\\file_to_append.py', line=12)
+    file1.append('tests\\file_to_append.py', line=28)
     file1.write_to('tests\\test3.py', mode='w')
     # TODO broken append to empty lines
     # TODO add padding option with empty nodes
-    assert file1.root.children[2].line == 3
-    assert file1.root.children[3].children[2].children[0].line == 13
+    assert file1.get_node_by_line(36).value.strip() == ""
+    assert file1.get_node_by_line(57).value.strip() == "child3"
 
     # TODO further testing
-    # TODO: fix children line not updating properly
+    # TODO: fix children line not updating properly SOLVED
 
 
 def test_ftree_transformer():
